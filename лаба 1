@@ -1,0 +1,51 @@
+/*************************
+ * Автор:    Рычков М.А. *
+ * Дата:     21.09.2026  *
+ * Название: Линейные    *
+ * Вариант:  9           *
+ *************************/
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+  double Q1, Q2, Q3, mu, pressure, length, pipeRadius, outerRadius, sideTriangle, innerRadius;
+  const double pi = 3.14159;
+
+  cout << "mu = ";
+  cin >> mu;
+
+  cout << "pressure = ";
+  cin >> pressure;
+
+  cout << "length = ";
+  cin >> length;
+
+  cout << "pipeRadius = ";
+  cin >> pipeRadius;
+
+  cout << "outerRadius = ";
+  cin >> outerRadius;
+
+  cout << "sideTriangle = ";
+  cin >> sideTriangle;
+
+  cout << "innerRadius = ";
+  cin >> innerRadius;
+
+  //circular cross-section
+  Q1 = (pi * pow(pipeRadius, 4) / 8) * (pressure / mu / length);
+
+  //annular cross-section
+  Q2 = (pi / 8) * (pressure / mu / length) * (pow((pow(outerRadius, 2) - pow(innerRadius, 2)), 2) / log(innerRadius / outerRadius) + pow(outerRadius, 4) - pow(innerRadius, 4));
+
+  //triangular cross-section
+  Q3 = (pow(sideTriangle, 4) * sqrt(3) / 320) * (pressure / mu / length);
+
+  cout << "fluid flow rate at circular cross-section = " << Q1
+       << "\nfluid flow rate at annular cross-section = " << Q2
+       << "\nfluid flow rate at triangular cross-section = " << Q3;
+
+  return 0;
+}
